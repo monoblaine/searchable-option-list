@@ -1,0 +1,19 @@
+{
+  "name": "searchable-option-list",
+  "homepage": "https://github.com/monoblaine/searchable-option-list",
+  "authors": [
+    "Serhan Apaydın <zerhan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "2.0.2"
+}
