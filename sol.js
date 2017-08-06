@@ -508,14 +508,14 @@
             }
 
             var searchTerm = this.$input.val(),
-                lowerCased = (searchTerm || '').toLowerCase();
+                sluggedSearchTerm = (searchTerm || '').toSlug();
 
             // show previously filtered elements again
             this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
             this._setNoResultsItemVisible(false);
 
-            if (lowerCased.trim().length > 0) {
-                this._findTerms(this.items, lowerCased);
+            if (sluggedSearchTerm.length > 0) {
+                this._findTerms(this.items, sluggedSearchTerm);
             }
 
             // call onScroll to position the popup again
@@ -538,7 +538,7 @@
             $.each(dataArray, function (index, item) {
                 if (item.type === 'option') {
                     var $element = item.displayElement,
-                        elementSearchableTerms = (item.label + ' ' + item.tooltip).trim().toLowerCase();
+                        elementSearchableTerms = (item.label + ' ' + item.tooltip).trim().toSlug();
 
                     if (elementSearchableTerms.indexOf(searchTerm) === -1) {
                         $element.addClass('sol-filtered-search');
