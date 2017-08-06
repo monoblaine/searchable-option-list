@@ -117,7 +117,7 @@
                 }
             },
 
-            selectAllMaxItemsThreshold: 30,
+            selectAllMaxItemsThreshold: 1000,
             showSelectAll: function () {
                 return this.config.multiple && this.config.selectAllMaxItemsThreshold && this.items && this.items.length <= this.config.selectAllMaxItemsThreshold;
             },
