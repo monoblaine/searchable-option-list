@@ -54,13 +54,13 @@
             name: undefined,           // name attribute, can also be set as name="" attribute on original element or data-sol-name=""
 
             texts: {
-                noItemsAvailable: 'No entries found',
-                selectAll: 'Select all',
-                selectNone: 'Select none',
+                noItemsAvailable: 'Kayıt bulunamadı',
+                selectAll: 'Tümünü seç',
+                selectNone: 'Tüm seçimleri kaldır',
                 quickDelete: '&times;',
-                searchplaceholder: 'Click here to search',
-                loadingData: 'Still loading data...',
-                itemsSelected: '{$a} items selected'
+                searchplaceholder: 'Aramak için tıklayın',
+                loadingData: 'Yükleniyor...',
+                itemsSelected: '{$a} öğe seçili'
             },
 
             events: {
