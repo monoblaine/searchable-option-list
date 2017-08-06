@@ -1068,4 +1068,12 @@
         return result;
     };
 
+    $(function () {
+        var $el;
+
+        $('[data-role="searchable-option-list"]').each(function () {
+            $el = $(this);
+            $el.searchableOptionList($el.data());
+        });
+    });
 }(jQuery, window, document));
