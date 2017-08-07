@@ -1043,29 +1043,21 @@
     SearchableOptionList.defaults = SearchableOptionList.prototype.defaults;
     window.SearchableOptionList = SearchableOptionList;
 
-    $.fn.searchableOptionList = function (options) {
-        var result = [];
-        this.each(function () {
+    $.fn.searchableOptionList = function (options, _relatedTarget) {
+        return this.each(function () {
             var $this = $(this),
-                $alreadyInitializedSol = $this.data(SearchableOptionList.prototype.DATA_KEY);
+                solInstance = $this.data(SearchableOptionList.prototype.DATA_KEY);
 
-            if ($alreadyInitializedSol) {
-                result.push($alreadyInitializedSol);
-            } else {
-                var newSol = new SearchableOptionList($this, options);
-                result.push(newSol);
+            if (!solInstance) {
+                solInstance = new SearchableOptionList($this, options);
 
-                setTimeout(function() {
-                    newSol.init();
-                }, 0);
+                solInstance.init();
+            }
+
+            if (typeof options === 'string') { // it's a method call
+                solInstance[options](_relatedTarget);
             }
         });
-
-        if (result.length === 1) {
-            return result[0];
-        }
-
-        return result;
     };
 
     $(function () {
