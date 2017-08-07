@@ -294,7 +294,7 @@
     vertical-align: top;
 }
 
-.sol-quick-delete:hover {
+.sol-quick-delete:not([disabled]):hover {
     color: #111;
     cursor: pointer;
 }

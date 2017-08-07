@@ -247,6 +247,10 @@
             this.$xItemsSelected = $('<div class="sol-results-count"/>');
 
             this.$caret = $('<div class="sol-caret-container"><b class="sol-caret"/></div>').click(function (e) {
+                if (self.disabled) {
+                    return;
+                }
+
                 self.toggle();
                 e.preventDefault();
                 return false;
@@ -881,7 +885,8 @@
         },
 
         _addSelectionDisplayItem: function ($changedItem) {
-            var solOptionItem = $changedItem.data('sol-item'),
+            var me = this,
+                solOptionItem = $changedItem.data('sol-item'),
                 $existingDisplayItem = solOptionItem.displaySelectionItem,
                 $displayItemText;
 
@@ -890,13 +895,17 @@
                 $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
                     .append($displayItemText)
                     .attr('title', solOptionItem.tooltip)
-                    .appendTo(this.$showSelectionContainer);
+                    .appendTo(me.$showSelectionContainer);
 
                 // show remove button on display items if not disabled and null selection allowed
-                if ((this.config.multiple || this.config.allowNullSelection) && !$changedItem.prop('disabled')) {
+                if ((me.config.multiple || me.config.allowNullSelection) && !$changedItem.prop('disabled')) {
                     $('<span class="sol-quick-delete"/>')
-                        .html(this.config.texts.quickDelete)
+                        .html(me.config.texts.quickDelete)
                         .click(function () {
+                            if (me.disabled) {
+                                return;
+                            }
+
                             $changedItem
                                 .prop('checked', false)
                                 .trigger('change');
@@ -1036,6 +1045,22 @@
 
         getSelection: function () {
             return this.$selection.find('input:checked');
+        },
+
+        _setDisabled: function (disabled) {
+            var me = this;
+
+            me.disabled = disabled;
+            me.$input.prop('disabled', disabled);
+            me.$showSelectionContainer.find('.sol-quick-delete').attr('disabled', disabled ? 'disabled' : null);
+        },
+
+        enable: function () {
+            this._setDisabled(false);
+        },
+
+        disable: function () {
+            this._setDisabled(true);
         }
     };
 
