@@ -180,6 +180,8 @@
                 .css('visibility', 'initial')
                 .show();
 
+            this._setDisabled(this.$originalElement.prop('disabled'));
+
             return this;
         },
 
