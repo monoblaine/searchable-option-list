@@ -164,16 +164,14 @@
             this._initializeUiElements();
             this._initializeInputEvents();
 
-            setTimeout(function () {
-                sol._initializeData();
+            sol._initializeData();
 
-                // take original form element out of form submission
-                // by removing the name attribute
-                sol.$originalElement
-                    .data(sol.DATA_KEY, sol)
-                    .removeAttr('name')
-                    .data('sol-name', originalName);
-            }, 0);
+            // take original form element out of form submission
+            // by removing the name attribute
+            sol.$originalElement
+                .data(sol.DATA_KEY, sol)
+                .removeAttr('name')
+                .data('sol-name', originalName);
 
             this.$originalElement.hide();
             this.$container
@@ -1071,6 +1069,17 @@
     window.SearchableOptionList = SearchableOptionList;
 
     $.fn.searchableOptionList = function (options, _relatedTarget) {
+        var isMethodCall = typeof options === 'string',
+            el = this[0];
+
+        if (options === 'getSelection') {
+            if (el) {
+                return $(el).data(SearchableOptionList.prototype.DATA_KEY)[options](_relatedTarget);
+            }
+
+            return;
+        }
+
         return this.each(function () {
             var $this = $(this),
                 solInstance = $this.data(SearchableOptionList.prototype.DATA_KEY);
@@ -1081,7 +1090,7 @@
                 solInstance.init();
             }
 
-            if (typeof options === 'string') { // it's a method call
+            if (isMethodCall) {
                 solInstance[options](_relatedTarget);
             }
         });
