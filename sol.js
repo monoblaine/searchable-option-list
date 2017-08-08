@@ -1047,6 +1047,21 @@
             return this.$selection.find('input:checked');
         },
 
+        setSelection: function (value) {
+            if (!Array.isArray(value)) {
+                value = [value];
+            }
+
+            var $changedInputs = this.$selectionContainer
+                .find('input')
+                .val(value)
+                .trigger('change');
+
+            if ($.isFunction(this.config.events.onChange)) {
+                this.config.events.onChange.call(this, this, $changedInputs);
+            }
+        },
+
         _setDisabled: function (disabled) {
             var me = this;
 
