@@ -1068,6 +1068,7 @@
             me.disabled = disabled;
             me.$input.prop('disabled', disabled);
             me.$showSelectionContainer.find('.sol-quick-delete').attr('disabled', disabled ? 'disabled' : null);
+            me.$container[disabled ? 'addClass' : 'removeClass']('sol-container-disabled');
         },
 
         enable: function () {

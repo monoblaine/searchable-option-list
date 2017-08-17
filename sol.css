@@ -330,3 +330,16 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
+
+.sol-container-disabled label {
+    color: #aaa;
+}
+
+.sol-container-disabled .sol-inner-container {
+    background-color: #ddd;
+}
+
+.sol-container-disabled .sol-selected-display-item {
+    background-color: #ddd;
+    color: #888;
+}
